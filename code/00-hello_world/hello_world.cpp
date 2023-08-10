@@ -5,5 +5,6 @@ int main() {
     // ? Classic.
     std::cout << "Hello World!" << std::endl;
 
+    // ? Starting from C++11, this line can be omitted.
     return 0;
 }
