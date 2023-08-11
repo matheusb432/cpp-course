@@ -93,3 +93,34 @@ using std::cin;
   - `cin >> x;` - reads data from the console and stores it in `x`
   - can fail if the input is invalid, errors should be checked with `cin.fail()`
 - `cerr` - standard error stream, used to output error messages to the console
+
+## Variables
+
+_Variables_ are an **abstraction for a memory location**. They're are used to store data in memory.
+
+- The `sizeof()` operator can be used to get the size of a variable in bytes.
+
+- The `auto` keyword can be used to automatically deduce the type of a variable from its initializer.
+
+```cpp
+// NOTE Syntax for variable initialization
+int age = 21; // Copy initialization (or c-like) 
+int age(21); // Direct initialization (or constructor)
+// * Is often better than copy initialization because it prevents narrowing conversions
+int age{ 21 }; // Uniform initialization (or list initialization, introduced in C++11)
+
+auto x = 5; // x is an int
+auto y = 5.0; // y is a double
+```
+
+- Variables enable moving data in memory in a more convenient way than just using their memory addresses. In _Assembly_, the equivalent of binding to a variable would be moving a value to a memory location (e.g. `mov eax, 5`).
+
+### Constants
+
+_Constants_ are variables whose value cannot be changed after initialization. They are declared with the `const` keyword.
+
+- Constants should be used whenever possible in place of literals, as they make the code more readable and maintainable at no performance cost since they are _inlined_ by the compiler.
+
+```cpp
+const int MAX = 100;
+```
