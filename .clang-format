@@ -1,4 +1,43 @@
-# Format Style Options - Created with Clang Power Tools
----
+BasedOnStyle: GNU
+AlignAfterOpenBracket: Align
+AllowAllParametersOfDeclarationOnNextLine: false
+AllowShortBlocksOnASingleLine: true
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: All
+
+# Uncommenting these lines will sometimes result in lines following an
+# if(){} or for(){} block being attached to the end of the block.
+AllowShortIfStatementsOnASingleLine: true
+# AllowShortLoopsOnASingleLine: true
+
+AlwaysBreakAfterDefinitionReturnType: None
+AlwaysBreakAfterReturnType: None
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterClass: false
+  AfterControlStatement: false
+  AfterEnum: false
+  AfterFunction: false
+  AfterNamespace: false
+  AfterStruct: false
+  AfterUnion: false
+  AfterExternBlock: false
+  BeforeCatch: false
+  BeforeElse: false
+  IndentBraces: false
+  SplitEmptyFunction: false
+  SplitEmptyRecord: false
+  SplitEmptyNamespace: false
+ContinuationIndentWidth: 2
+KeepEmptyLinesAtTheStartOfBlocks: false
+Language: Cpp
 MaxEmptyLinesToKeep: 1
-...
+NamespaceIndentation: All
+PenaltyExcessCharacter: 100
+PenaltyReturnTypeOnItsOwnLine: 1
+PointerAlignment: Right
+SortIncludes: false
+SpacesInContainerLiterals: false
+
+SpaceBeforeParens: ControlStatements
+IndentCaseLabels: true
