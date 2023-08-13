@@ -1,5 +1,9 @@
 # C++ Fundamentals 🎮
 
+- Prefer ‘\n’ over std::endl when outputting text to the console, as endl flushes the buffer after inserting a line break
+
+- The assignment operator returns the value it assigned to, so "x = 5" returns 5.
+
 ## The main() function
 
 The `main()` function is the entry point of every C++ program. Starting from _C++11_ onwards, it's possible to omit the `return 0;` statement at the end of the `main()` function.
@@ -115,6 +119,8 @@ auto y = 5.0; // y is a double
 
 - Variables enable moving data in memory in a more convenient way than just using their memory addresses. In _Assembly_, the equivalent of binding to a variable would be moving a value to a memory location (e.g. `mov eax, 5`).
 
+- Initializing variables with `{}` sets them to their default value, so `int x {}` sets x to 0. It's often best practice to do so as reading uninitialized variables can cause UB.
+
 ### Constants
 
 _Constants_ are variables whose value cannot be changed after initialization. They are declared with the `const` keyword.
@@ -124,3 +130,19 @@ _Constants_ are variables whose value cannot be changed after initialization. Th
 ```cpp
 const int MAX = 100;
 ```
+
+## Undefined Behavior
+
+_Undefined behavior_ (often abbreviated UB) is the result of executing code whose behavior is not well-defined. (e.g. reading an uninitialized variable)
+
+Code implementing undefined behavior may:
+
+- produce different results every time it is run.
+- consistently produces the same incorrect result.
+- behave inconsistently (sometimes produces the correct result, sometimes not).
+- seem like it’s working but produces incorrect results later in the program.
+- crash, either immediately or later.
+- work on some compilers but not others.
+- work until you change some other seemingly unrelated code.
+
+So basically: _"Undefined behavior is like a box of chocolates. You never know what you’re going to get!"_
