@@ -120,5 +120,8 @@ int main() {
   cout << "wage is " << sizeof(wage) << " bytes" << endl;
   cout << "wage is " << sizeof wage << " bytes" << endl;
 
+  // ? Constants
+  const double price_per_room{ 30.0 };
+
   // Variables
 }

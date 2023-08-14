@@ -121,6 +121,8 @@ auto y = 5.0; // y is a double
 
 - Initializing variables with `{}` sets them to their default value, so `int x {}` sets x to 0. It's often best practice to do so as reading uninitialized variables can cause UB.
 
+- Define your local variables as close to their first use as reasonable.
+
 ### Constants
 
 _Constants_ are variables whose value cannot be changed after initialization. They are declared with the `const` keyword.
@@ -128,7 +130,18 @@ _Constants_ are variables whose value cannot be changed after initialization. Th
 - Constants should be used whenever possible in place of literals, as they make the code more readable and maintainable at no performance cost since they are _inlined_ by the compiler.
 
 ```cpp
+// ? 5 is a _literal constant_
+int x = 5;
+// ? Possible to type the literal constant
+unsigned int y = 5u;
+long z = 5l;
+long long w = 5ll;
+
+// ? Declared constants
 const int MAX = 100;
+
+// ? Defined constants - bad practice to use in modern C++ as it can't type check or scope check
+#define pi 3.14
 ```
 
 ## Undefined Behavior
@@ -146,3 +159,15 @@ Code implementing undefined behavior may:
 - work until you change some other seemingly unrelated code.
 
 So basically: _"Undefined behavior is like a box of chocolates. You never know what you’re going to get!"_
+
+## Functions
+
+- Failure to return a value from a value-returning function will cause UB.
+
+- A parameter without a name is called an _unnamed parameter_, it's useful to indicate that the function won't use the provided arguments:
+
+```cpp
+void doSomething(int)
+{
+}
+```
