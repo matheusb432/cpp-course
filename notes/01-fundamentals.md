@@ -1,8 +1,8 @@
 # C++ Fundamentals 🎮
 
-- Prefer ‘\n’ over std::endl when outputting text to the console, as endl flushes the buffer after inserting a line break
+- Prefer `\n` over `std::endl` when outputting text to the console, as `endl` flushes the buffer after inserting a line break
 
-- The assignment operator returns the value it assigned to, so "x = 5" returns 5.
+- The assignment operator returns the value it assigned to, so `x = 5` returns 5.
 
 ## The main() function
 
@@ -30,9 +30,9 @@ int main()
 
 ## Operators
 
-- `::` - scope resolution operator, used to access members of a namespace, class, or structure
-- `<<` - stream insertion operator, used to insert data into a stream (e.g. `std::cout`)
-- `>>` - stream extraction operator, used to extract data from a stream (e.g. `std::cin`)
+- `::` - _scope resolution_ operator, used to access members of a namespace, class, or structure
+- `<<` - _stream insertion_ operator, used to insert data into a stream (e.g. `std::cout << "Some text"`)
+- `>>` - _stream extraction_ operator, used to extract data from a stream (e.g. `std::cin >> x`)
 
 ## Preprocessor Directives
 
@@ -52,7 +52,7 @@ _Namespaces_ are used to group related code together. They can be used to preven
 
 - `std` is the namespace that contains all the standard library functions.
 
-- `using namespace std;` is used to bring **all** the names from the `std` namespace into the current scope, it enables more succinct code, but can be overkill.
+- `using namespace std;` is used to bring **all** the names from the `std` namespace into the current scope, it enables more succinct code, but may not be necessary.
 
 ```cpp
 
@@ -93,9 +93,11 @@ using std::cin;
 ## Basic I/O
 
 - `cout` - standard output stream, outputs to the console by default
+
 - `cin` - standard input stream, used to read data from the console
   - `cin >> x;` - reads data from the console and stores it in `x`
   - can fail if the input is invalid, errors should be checked with `cin.fail()`
+
 - `cerr` - standard error stream, used to output error messages to the console
 
 ## Variables
@@ -109,9 +111,11 @@ _Variables_ are an **abstraction for a memory location**. They're are used to st
 ```cpp
 // NOTE Syntax for variable initialization
 int age = 21; // Copy initialization (or c-like) 
+// ! Bad practice, can be confusing since it looks like a function call
 int age(21); // Direct initialization (or constructor)
-// * Is often better than copy initialization because it prevents narrowing conversions
-int age{ 21 }; // Uniform initialization (or list initialization, introduced in C++11)
+
+// * Best pratice (C++11)
+int age{ 21 }; // Uniform initialization (or list initialization)
 
 auto x = 5; // x is an int
 auto y = 5.0; // y is a double
@@ -146,7 +150,7 @@ const int MAX = 100;
 
 ## Undefined Behavior
 
-_Undefined behavior_ (often abbreviated UB) is the result of executing code whose behavior is not well-defined. (e.g. reading an uninitialized variable)
+_Undefined behavior_ (often abbreviated _UB_) is the result of executing code whose behavior is not well-defined. (e.g. reading an uninitialized variable, dividing by zero, dereferencing a null pointer, etc.)
 
 Code implementing undefined behavior may:
 

@@ -26,8 +26,38 @@ vector<int> use_vector() {
   return vec;
 }
 
+void display_vec(vector<int> vec, string name) {
+  cout << name << ": " << vec.at(0) << ", " << vec.at(1)
+       << " | size: " << vec.size() << endl;
+}
+
+void section_7_challenge() {
+  vector<int> vector1{ 10, 20 };
+  vector<int> vector2{ 100, 200 };
+
+  display_vec(vector1, "vector1");
+  display_vec(vector2, "vector2");
+
+  vector<vector<int> > vector_2d;
+
+  // NOTE This *copies* the vector, new vectors are created
+  vector_2d.push_back(vector1);
+  vector_2d.push_back(vector2);
+
+  display_vec(vector_2d.at(0), "vector_2d.at(0)");
+  display_vec(vector_2d.at(1), "vector_2d.at(1)");
+
+  // NOTE As the vector was copied, vector_2d.at(0) will NOT be mutated
+  vector1.at(0) = 1000;
+  cout << "---- MUTATED vector1! ----" << endl;
+
+  display_vec(vector_2d.at(0), "vector_2d.at(0)");
+  display_vec(vector_2d.at(1), "vector_2d.at(1)");
+
+  display_vec(vector1, "vector1");
+}
+
 int main() {
-  /*
   // NOTE array size is inferred as 5, so it's not necessary specify it
   char vowels[]{ 'a', 'e', 'i', 'o', 'u' };
   cout << "The first vowel is: " << vowels[0] << endl;
@@ -53,11 +83,10 @@ int main() {
     cout << "Element at index " << i << ": " << test_scores[i] << endl;
   }
 
-  // ? Arrays are pointers - value will be a memory address
+  // ? Value will be  pointer to the first element
   cout << "Value of test_scores: " << test_scores << endl;
   // ? Assuming the address is `1000`, the addresses of the elements would be:
   // 1000, 1004, 1008, 1012, 1016 (assuming 4 bytes per int)
-  */
 
   vector<int> values{ 100, 95, 99, 87, 88 };
 
@@ -88,4 +117,6 @@ int main() {
 
   cout << "movie_ratings.at(1).at(0): " << endl;
   cout << movie_ratings.at(1).at(0) << endl;
+
+  section_7_challenge();
 }

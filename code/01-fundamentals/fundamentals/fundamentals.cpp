@@ -9,6 +9,35 @@ using std::endl;
 // ? Global variables can be accessed and mutated anywhere in the program
 int global_var{ 10 };
 
+// ? Get change amount for a given integer
+void section_8_challenge() {
+  cout << "Enter an amount in cents: ";
+  int amount_in_cents{};
+  cin >> amount_in_cents;
+
+  cout << "You can provide this change as follows" << endl;
+
+  int balance{ amount_in_cents };
+
+  int dollars = balance / 100;
+  // ? Equivalent to `balance = balance % 100`
+  balance %= 100;
+  int quarters = balance / 25;
+  balance %= 25;
+  int dimes = balance / 10;
+  balance %= 10;
+  int nickels = balance / 5;
+  balance %= 5;
+
+  int pennies = balance;
+
+  cout << "dollars:" << dollars << endl;
+  cout << "quarters:" << quarters << endl;
+  cout << "dimes:" << dimes << endl;
+  cout << "nickels:" << nickels << endl;
+  cout << "pennies:" << pennies << endl;
+}
+
 // TODO move each section into its own file
 int main() {
   // Variables
@@ -71,7 +100,6 @@ int main() {
   // NOTE will overflow into a negative number in this instance
   cout << "The product of " << value1 << " and " << value2 << " is " << product
        << endl;
-  */
 
   // ? sizeof operator - depends on specific c++ version and compiler
   cout << "char: " << sizeof(char) << " bytes" << endl;
@@ -113,8 +141,8 @@ int main() {
 
   int age{ 21 };
   cout << "age is " << sizeof(age) << " bytes" << endl;
-  // NOTE sizeof is an operator, not a function, so the parentheses are optional
-  cout << "age is " << sizeof age << " bytes" << endl;
+  // NOTE sizeof is an operator, not a function, so the parentheses are
+  optional cout << "age is " << sizeof age << " bytes" << endl;
 
   double wage{ 22.24 };
   cout << "wage is " << sizeof(wage) << " bytes" << endl;
@@ -124,4 +152,47 @@ int main() {
   const double price_per_room{ 30.0 };
 
   // Variables
+
+  // Statements and Operators
+
+  int total{};
+  int num1{}, num2{}, num3{};
+  const int count{ 3 };
+
+  cout << "Enter 3 integers separated by spaces: ";
+  cin >> num1 >> num2 >> num3;
+
+  total = num1 + num2 + num3;
+
+  double average{ 0.0 };
+
+  // NOTE Casting to double to get a double result
+  average = static_cast<double>(total) / count;
+
+  cout << "The 3 numbers were: " << num1 << ", " << num2 << ", " << num3
+       << endl;
+  cout << "The sum of the numbers is: " << total << endl;
+  cout << "The average of the numbers is: " << average << endl;
+
+  // ?  Displaying bool as true or false
+  cout << std::boolalpha;
+  cout << "true: " << true << endl;
+  cout << "false: " << false << endl;
+
+  // ?  Displaying bool as 1 or 0 (default)
+  cout << std::noboolalpha;
+  cout << "true: " << true << endl;
+  cout << "false: " << false << endl;
+
+  // ? Compound assignment operators
+  int counter{ 10 };
+  counter += 5; // 15
+
+  counter *= 3; // 45
+  counter /= 5; // 9
+
+  cout << counter << endl;
+  */
+  section_8_challenge();
+  // Statements and Operators
 }

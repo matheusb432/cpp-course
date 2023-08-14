@@ -67,6 +67,44 @@ void carpet_cleaning_service() {
   cout << "This estimate is valid for " << ESTIMATE_EXPIRY << " days" << endl;
 }
 
+void assignment_operator() {
+  int num1{ 13 };
+  int num2{};
+
+  num1 = { 5 };
+  num2 = { num1 };
+
+  cout << num1 << " " << num2;
+}
+
+int arithmetic_operators(int number) {
+  int original_number{ number };
+
+  number = { number * 2 };
+  number = { number + 9 };
+  number = { number - 3 };
+  number = { number / 2 };
+  number = { number - original_number };
+  number = { number % 3 };
+
+  cout << number << endl;
+
+  return number;
+}
+
+// ? One liner logical operators exercise.
+// ? Must be:
+// ? 1. 18 or older OR 15 and have parental consent
+// ? 2. have valid ssn (== true)
+// ? 3. not have accidents (== false)
+void logical_operators(int age, bool parental_consent, bool ssn,
+                       bool accidents) {
+  if ((age >= 18 || (age > 15 && parental_consent)) && ssn && !accidents)
+    cout << "Yes, you can work.";
+
+  return;
+}
+
 int main() {
   cout << "Results:" << endl;
 
@@ -75,6 +113,9 @@ int main() {
   date_of_birth();
   employee_profile();
   carpet_cleaning_service();
+  assignment_operator();
+  arithmetic_operators(5);
+  logical_operators(16, true, true, false);
 
   cout << endl;
 }
