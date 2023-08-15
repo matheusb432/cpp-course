@@ -6,17 +6,19 @@
 #include <iostream>
 
 int main() {
-  say_hi();
-  sallys_dogs();
-  date_of_birth();
-  employee_profile();
-  carpet_cleaning_service();
-  assignment_operator();
-  arithmetic_operators(5);
-  logical_operators(16, true, true, false);
-  can_you_drive(16, true);
-  std::cout << calculate_sum();
-  c_math_functions();
+  // say_hi();
+  // sallys_dogs();
+  // date_of_birth();
+  // employee_profile();
+  // carpet_cleaning_service();
+  // assignment_operator();
+  // arithmetic_operators(5);
+  // logical_operators(16, true, true, false);
+  // can_you_drive(16, true);
+  // std::cout << calculate_sum();
+  // c_math_functions();
+  // temperature_conversion(80);
+  print_grocery_list();
 
   std::cout << std::endl;
 }

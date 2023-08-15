@@ -22,3 +22,35 @@ void c_math_functions() {
        << "\n"
        << "The individual bill at location 3 will be $" << individual_bill_3;
 }
+
+void temperature_conversion(double fahrenheit_temperature) {
+  double celsius_temperature = fahrenheit_to_celsius(fahrenheit_temperature);
+  double kelvin_temperature = fahrenheit_to_kelvin(fahrenheit_temperature);
+
+  cout << "The fahrenheit temperature " << fahrenheit_temperature
+       << " degrees is equivalent to " << celsius_temperature
+       << " degrees celsius and " << kelvin_temperature << " degrees kelvin.";
+}
+
+double fahrenheit_to_celsius(double temperature) {
+  return round(((temperature - 32) * 5) / 9);
+}
+
+double fahrenheit_to_kelvin(double temperature) {
+  return round(((temperature - 32) * 5) / 9 + 273);
+}
+
+void modify_grocery_list() {
+  print_grocery_list();
+  print_grocery_list(5);
+  print_grocery_list(7, 11);
+}
+
+void print_grocery_list(int apples, int oranges, int mangos) {
+  cout << apples << " apples"
+       << "\n"
+       << oranges << " oranges"
+       << "\n"
+       << mangos << " mangos"
+       << "\n";
+}

@@ -164,18 +164,6 @@ Code implementing undefined behavior may:
 
 So basically: _"Undefined behavior is like a box of chocolates. You never know what you’re going to get!"_
 
-## Functions
-
-- Failure to return a value from a value-returning function will cause UB.
-
-- A parameter without a name is called an _unnamed parameter_, it's useful to indicate that the function won't use the provided arguments:
-
-```cpp
-void doSomething(int)
-{
-}
-```
-
 ## Characters & Strings
 
 - The `<cctype>` header file contains functions for working with characters, it contains utility functions for checking if a character is a digit, uppercase, etc, and for converting characters to uppercase and lowercase.
