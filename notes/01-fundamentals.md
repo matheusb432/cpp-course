@@ -175,3 +175,23 @@ void doSomething(int)
 {
 }
 ```
+
+## Characters & Strings
+
+- The `<cctype>` header file contains functions for working with characters, it contains utility functions for checking if a character is a digit, uppercase, etc, and for converting characters to uppercase and lowercase.
+
+### C-Style Strings
+
+_C-Style strings_ are arrays of characters (`char[]`) terminated by a null character (`\0`). They are used to represent text in C and C++.
+
+- The `<cstring>` header file contains functions for working with C-Style strings, it contains utility functions for copying, concatenating, and comparing strings.
+
+### C++ Strings
+
+_C++ strings_ are objects that represent sequences of characters. They are provided by the `<string>` header file and `std::string` is the class that represents them.
+
+- It's a good practice to use C++ strings instead of C-Style strings whenever possible, as they are safer and easier to use. However, **they're often slower than C-Style strings**.
+
+- They are dynamic in size, so they're a pointer to data stored on the heap.
+
+- C++ strings are **mutable**, and they're always initialized to an empty string.
