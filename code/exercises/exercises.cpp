@@ -105,17 +105,84 @@ void logical_operators(int age, bool parental_consent, bool ssn,
   return;
 }
 
+void can_you_drive_elif(int age) {
+  int years_to_drive = 16 - age;
+  if (years_to_drive > 0) {
+    cout << "Sorry, come back in " << years_to_drive << " years";
+
+    return;
+  }
+
+  cout << "Yes - you can drive!";
+}
+
+void can_you_drive(int age, bool has_car) {
+  int years_to_drive = 16 - age;
+
+  if (years_to_drive > 0) {
+    cout << "Sorry, come back in " << years_to_drive
+         << " years and be sure you own a car when you come back.";
+
+    return;
+  }
+
+  cout << (has_car ? "Yes - you can drive!"
+                   : "Sorry, you need to buy a car before you can drive!");
+}
+
+void display_day(int day_code) {
+  switch (day_code) {
+    case 0:
+      cout << "Sunday";
+      break;
+    case 1:
+      cout << "Monday";
+      break;
+    case 2:
+      cout << "Tuesday";
+      break;
+    case 3:
+      cout << "Wednesday";
+      break;
+    case 4:
+      cout << "Thursday";
+      break;
+    case 5:
+      cout << "Friday";
+      break;
+    case 6:
+      cout << "Saturday";
+      break;
+    default:
+      cout << "Error - illegal day code";
+  }
+}
+
+int calculate_sum() {
+  int sum{};
+
+  for (int i = 1; i <= 15; i++) {
+    // NOTE Ternary expressions should have parentheses to avoid any order of
+    // operations bugs
+    sum += ((i % 2 == 1) ? i : 0);
+  }
+
+  return sum;
+}
+
 int main() {
   cout << "Results:" << endl;
 
-  say_hi();
-  sallys_dogs();
-  date_of_birth();
-  employee_profile();
-  carpet_cleaning_service();
-  assignment_operator();
-  arithmetic_operators(5);
-  logical_operators(16, true, true, false);
+  // say_hi();
+  // sallys_dogs();
+  // date_of_birth();
+  // employee_profile();
+  // carpet_cleaning_service();
+  // assignment_operator();
+  // arithmetic_operators(5);
+  // logical_operators(16, true, true, false);
+  // can_you_drive(16, true);
+  cout << calculate_sum();
 
   cout << endl;
 }

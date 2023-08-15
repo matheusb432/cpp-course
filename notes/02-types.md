@@ -9,3 +9,5 @@ _Primitive types_ are the most basic types in C++. They are the building blocks 
 - _floating-point types_ - are used to represent real numbers (e.g. `float`, `double`, `long double`).
 
 - **The size and precision of the types is often compiler-dependent**. The `sizeof()` operator can be used to get the size of a type in bytes.
+
+- `size_t` is a platform-dependent unsigned integer. (like `usize` in Rust)
