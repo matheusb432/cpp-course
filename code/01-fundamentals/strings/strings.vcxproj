@@ -127,7 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="challenges.cpp" />
+    <ClCompile Include="letter_pyramid.cpp" />
     <ClCompile Include="strings.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="challenges.h" />
+    <ClInclude Include="letter_pyramid.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
