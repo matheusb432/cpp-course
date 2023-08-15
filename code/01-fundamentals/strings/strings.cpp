@@ -20,7 +20,7 @@ void strings_and_functions() {
   auto last_name_length = strlen(last_name);
   auto whole_name_length = strlen(whole_name);
 
-  cout
+  std::cout
     << "The length of the first name, " << first_name << ", is "
     << first_name_length << " letters long and the length of the last name, "
     << last_name << ", is " << last_name_length
@@ -35,7 +35,7 @@ void cpp_strings() {
 
   string formatted_full_name = first_name + " " + last_name;
 
-  cout << formatted_full_name;
+  std::cout << formatted_full_name;
 }
 
 void cpp_strings_2() {
@@ -48,7 +48,7 @@ void cpp_strings_2() {
     journal_entry_1.swap(journal_entry_2);
   }
 
-  cout << journal_entry_1 << "\n" << journal_entry_2;
+  std::cout << journal_entry_1 << "\n" << journal_entry_2;
 }
 
 // ? Simple encryption algorithm
@@ -56,13 +56,13 @@ void section_10_challenge() {
   string alphabet{ "_ abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" };
   string key{ " _XZNLWEBGJHQDYVTKFUOMPCIASRxznlwebgjhqdyvtkfuompciasr" };
 
-  cout << "Enter your secret message: ";
+  std::cout << "Enter your secret message: ";
   // ? uncomment for simple testing:
   // string input{ "I'll meet you at billy's house at 10AM" };
   string input{};
   getline(cin, input);
 
-  cout << "Encrypting message..." << endl;
+  std::cout << "Encrypting message..." << endl;
   string encrypted{};
 
   for (char c : input) {
@@ -73,9 +73,9 @@ void section_10_challenge() {
 
     encrypted += did_find ? key.at(position) : c;
   }
-  cout << "Encrypted message: " << encrypted << endl;
+  std::cout << "Encrypted message: " << encrypted << endl;
 
-  cout << "Decrypting message..." << endl;
+  std::cout << "Decrypting message..." << endl;
   string decrypted{};
 
   for (char c : encrypted) {
@@ -84,7 +84,66 @@ void section_10_challenge() {
 
     decrypted += did_find ? alphabet.at(position) : c;
   }
-  cout << "Decrypted message: " << decrypted << endl;
+  std::cout << "Decrypted message: " << decrypted << endl;
+}
+
+/// Letter pyramid algorithm
+/// e.g. Input: "ABC"
+/// _ _ A _ _
+/// _ A B A _
+/// A B C B A
+///
+/// NOTE This can probably be optimized further considering each line has a
+/// static size after creation, so they could be C-Style strings
+// TODO refactor with learned stuff
+string letter_pyramid(string word) {
+  auto len = word.length();
+
+  if (len == 0)
+    return "";
+
+  auto line_len = len * 2 - 1;
+  auto line_half_idx = line_len / 2;
+  /// NOTE Preallocating the pyramid to (len * (line_len + 1) * sizeof(char))
+  /// bytes could potentially be faster?
+  string pyramid{};
+  string pyramid_line{};
+  /// Creating a line with all whitespaces
+  const string blank_line(line_len, ' ');
+
+  for (int i = 0; i < len; i++) {
+    /// **Copying** (not pointing) the blank line to the pyramid line
+    pyramid_line = blank_line;
+
+    auto letters_count = i * 2 + 1;
+    auto whitespaces_count = line_len - letters_count;
+
+    int start_idx = whitespaces_count / 2;
+    int line_idx = start_idx;
+    /// word_idx must be a signed int, otherwise it overflows when decremented
+    int word_idx = 0;
+
+    /// Appends letters forward
+    while (line_idx <= line_half_idx) {
+      pyramid_line.at(line_idx) = word.at(word_idx);
+
+      line_idx++;
+      word_idx++;
+    }
+    word_idx -= 2;
+    /// Appends letters in reverse
+    while (word_idx >= 0) {
+      pyramid_line.at(line_idx) = word.at(word_idx);
+
+      line_idx++;
+      word_idx--;
+    }
+
+    pyramid += pyramid_line + '\n';
+  }
+
+  std::cout << pyramid << endl;
+  return pyramid;
 }
 
 int main() {
@@ -144,6 +203,11 @@ int main() {
   for (int c_ascii : s1) {
     cout << c_ascii << endl;
   }
-  */
   section_10_challenge();
+  */
+  letter_pyramid("");
+  letter_pyramid("AB");
+  letter_pyramid("ABC");
+  letter_pyramid("12345");
+  letter_pyramid("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 }
