@@ -24,12 +24,18 @@
     <ClCompile Include="array_args.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="passing_refs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="passing_values.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="array_args.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="passing_refs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

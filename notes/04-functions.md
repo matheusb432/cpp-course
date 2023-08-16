@@ -5,9 +5,7 @@
 - A parameter without a name is called an _unnamed parameter_, it's useful to indicate that the function won't use the provided arguments:
 
 ```cpp
-void doSomething(int)
-{
-}
+void foo(int);
 ```
 
 ## Function Prototypes
