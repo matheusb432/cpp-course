@@ -1,5 +1,6 @@
 #pragma once
 
+int sum_of_digits(int n);
 void c_math_functions();
 void temperature_conversion(double fahrenheit_temperature);
 double fahrenheit_to_celsius(double);

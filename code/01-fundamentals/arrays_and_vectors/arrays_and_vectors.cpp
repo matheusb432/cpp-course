@@ -1,6 +1,9 @@
+#include "cli_app.h";
+
 #include <iostream>
 #include <vector>
 #include <cctype>
+#include "arrays_and_vectors.h"
 
 using namespace std;
 
@@ -97,118 +100,53 @@ int calculate_pairs(vector<int> vec) {
   }
   return result;
 }
+using cli_app::MenuOption;
 
-// ? CLI app to make operations on a vector of numbers
+// ? Also is section 11 challenge
 void section_9_challenge() {
   vector<double> numbers{};
 
-  const char PRINT_NUMBERS = 'P';
-  const char ADD_NUMBER = 'A';
-  const char DISPLAY_MEAN = 'M';
-  const char DISPLAY_SMALLEST = 'S';
-  const char DISPLAY_LARGEST = 'L';
-  const char QUIT = 'Q';
-
-  char input{};
+  string input{};
   char normalized_input{};
 
-  // TODO refactor with enums & functions (or similar)
   do {
-    std::cout << "\n" << PRINT_NUMBERS << ". Print numbers" << endl;
-    std::cout << ADD_NUMBER << ". Add a number" << endl;
-    std::cout << DISPLAY_MEAN << ". Display mean of the numbers" << endl;
-    std::cout << DISPLAY_SMALLEST << ". Display the smallest number" << endl;
-    std::cout << DISPLAY_LARGEST << ". Display the largest number" << endl;
-    std::cout << QUIT << ". Quit" << endl;
-    std::cout << "Enter your choice: ";
+    cli_app::print_menu();
 
     cin >> input;
+    if (cin.fail() || input.length() != 1) {
+      std::cout << "Invalid input! Must be a char" << endl;
+      cin.clear();
+      continue;
+    }
 
-    normalized_input = toupper(input);
+    normalized_input = toupper(input[0]);
 
-    // TODO refactor to if-else since it's less verbose?
     switch (normalized_input) {
-      case PRINT_NUMBERS: {
-        if (numbers.empty()) {
-          cout << "[] - The list is empty" << endl;
-          break;
-        }
-        std::cout << "[ ";
-        for (auto num : numbers)
-          std::cout << num << ", ";
-        std::cout << "]" << endl;
+      case MenuOption::PRINT_NUMBERS:
+        cli_app::print_numbers(numbers);
         break;
-      }
-      case ADD_NUMBER: {
-        int new_number{};
-        std::cout << "Enter the number to add: ";
-        while (true) {
-          cin >> new_number;
-
-          if (cin.fail()) {
-            std::cout << "Invalid input! Must be a double" << endl;
-            continue;
-          }
-          break;
-        }
-        std::cout << "Added " << new_number << " to the list.";
-        numbers.push_back(new_number);
+      case MenuOption::ADD_NUMBER:
+        cli_app::add_number(numbers);
         break;
-      }
-      case DISPLAY_MEAN: {
-        if (numbers.empty()) {
-          cout << "Unable to calculate mean - no data" << endl;
-          break;
-        }
-
-        double sum{};
-        for (auto num : numbers)
-          sum += num;
-
-        auto mean = sum / numbers.size();
-        std::cout << "Mean is " << mean << endl;
-        std::cout << "int Mean is " << static_cast<int>(mean) << endl;
+      case MenuOption::FIND_NUMBER:
+        cli_app::find_indexof(numbers);
         break;
-      }
-      case DISPLAY_SMALLEST: {
-        if (numbers.empty()) {
-          cout << "Unable to get smallest - no data" << endl;
-          break;
-        }
-
-        double smallest{ numbers.at(0) };
-        for (auto num : numbers) {
-          if (num > smallest)
-            continue;
-          smallest = num;
-        }
-        std::cout << "Smallest is " << smallest << endl;
+      case MenuOption::DISPLAY_MEAN:
+        cli_app::display_mean(numbers);
         break;
-      }
-      case DISPLAY_LARGEST: {
-        if (numbers.empty()) {
-          cout << "Unable to get largest - no data" << endl;
-          break;
-        }
-
-        double largest{ numbers.at(0) };
-        for (auto num : numbers) {
-          if (num < largest)
-            continue;
-          largest = num;
-        }
-        std::cout << "Largest is " << largest << endl;
+      case MenuOption::DISPLAY_SMALLEST:
+        cli_app::display_largest(numbers);
         break;
-      }
-      case QUIT: {
+      case MenuOption::DISPLAY_LARGEST:
+        cli_app::display_largest(numbers);
+        break;
+      case MenuOption::QUIT:
         std::cout << "Quitting..." << endl;
         break;
-      }
-      default: {
+      default:
         std::cout << "Unknown selection, please try again." << endl;
-      }
     }
-  } while (normalized_input != QUIT);
+  } while (normalized_input != MenuOption::QUIT);
 }
 
 int main() {

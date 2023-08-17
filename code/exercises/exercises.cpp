@@ -18,7 +18,8 @@ int main() {
   // std::cout << calculate_sum();
   // c_math_functions();
   // temperature_conversion(80);
-  print_grocery_list();
+  // print_grocery_list();
+  std::cout << sum_of_digits(9999);
 
   std::cout << std::endl;
 }

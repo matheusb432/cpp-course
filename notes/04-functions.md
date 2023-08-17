@@ -17,7 +17,9 @@ When a function is called, the following happens:
 1. The function's parameters are pushed onto the stack in reverse order.
 2. The function's local variables are pushed onto the stack.
 3. The function's code is executed.
-4. The function's local variables are popped off the stack in _LIFO_ order.
+4. The function's local variables are popped off the stack in _LIFO_ order
+    > This is also called _stack unwinding_
+5. Finally, the function's return value is placed in a register if it exists.
 
 - If a function allocates too much data on the stack, it can cause a _stack overflow_ since the stack size is finite
 
@@ -59,3 +61,9 @@ inline int add(int x, int y) { return x + y; }
 - Inline functions are useful for small functions that are called frequently, but they can cause an increase in the binary size if they are too large.
 
 - Sometimes the compiler inlines functions automatically, this is called _implicit inlining_.
+
+## Recursive Functions
+
+_Recursive functions_ are functions that call themselves. Their behavior in C++ is much like in other languages.
+
+- Using recursion are often more expensive than using loops due to the overhead of allocating stack frames and the compiler not being able to optimize them easily. If performance is critical, their behavior can be replicated using loops.

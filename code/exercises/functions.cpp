@@ -1,9 +1,19 @@
 #include "functions.h"
 
 #include <iostream>
+#include <string>
 #include <cmath>
 
 using namespace std;
+
+// ? Using recursion
+int sum_of_digits(int n) {
+  int next = n % 10;
+  if (next == n)
+    return next;
+
+  return next + sum_of_digits(n / 10);
+}
 
 // ? Using C stdlib math fns
 void c_math_functions() {

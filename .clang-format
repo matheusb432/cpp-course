@@ -1,7 +1,7 @@
 BasedOnStyle: GNU
 AlignAfterOpenBracket: Align
 AllowAllParametersOfDeclarationOnNextLine: false
-AllowShortBlocksOnASingleLine: true
+AllowShortBlocksOnASingleLine: false
 AllowShortCaseLabelsOnASingleLine: false
 AllowShortFunctionsOnASingleLine: All
 
