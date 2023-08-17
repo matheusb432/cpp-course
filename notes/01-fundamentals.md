@@ -148,6 +148,26 @@ const int MAX = 100;
 #define pi 3.14
 ```
 
+### Static Variables
+
+_Static variables_ are variables that are initialized only once, and retain their value between function calls. They are declared with the `static` keyword.
+
+- Mutable static variables can cause _data races_, so they should be used with caution.
+    > In Rust, `static mut` variables are considered unsafe for this reason.
+
+```cpp
+
+void increment()
+{
+    static int x = 0;
+    x++;
+    std::cout << x << std::endl;
+}
+
+increment(); // x is 1
+increment(); // x is 2
+```
+
 ## Undefined Behavior
 
 _Undefined behavior_ (often abbreviated _UB_) is the result of executing code whose behavior is not well-defined. (e.g. reading an uninitialized variable, dividing by zero, dereferencing a null pointer, etc.)

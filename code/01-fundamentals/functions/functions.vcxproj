@@ -129,11 +129,13 @@
   <ItemGroup>
     <ClCompile Include="array_args.cpp" />
     <ClCompile Include="functions.cpp" />
+    <ClCompile Include="how_fns_work.cpp" />
     <ClCompile Include="passing_refs.cpp" />
     <ClCompile Include="passing_values.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="array_args.h" />
+    <ClInclude Include="how_fns_work.h" />
     <ClInclude Include="passing_refs.h" />
     <ClInclude Include="passing_values.h" />
   </ItemGroup>

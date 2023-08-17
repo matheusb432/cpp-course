@@ -4,6 +4,7 @@
 #include <vector>
 
 namespace passing_refs {
+  void examples();
   void swap(int &a, int &b);
   void emphasize_str(std::string &str);
   void print_str(const std::string &str);
