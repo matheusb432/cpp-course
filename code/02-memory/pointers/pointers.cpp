@@ -2,16 +2,21 @@
 #include <vector>
 #include <string>
 
+using std::cout;
 using std::endl;
 using std::string;
 using std::vector;
 
 void basics();
 void dynamic_mem();
+void pass_by_ref();
+void ref_return();
 
 int main() {
   // basics();
-  dynamic_mem();
+  // dynamic_mem();
+  // pass_by_ref();
+  ref_return();
 }
 
 void basics() {
@@ -116,4 +121,88 @@ void dynamic_mem() {
   std::cout << "*(arr_ptr + 2): " << *(arr_ptr + 2) << endl;
 
   delete[] arr_ptr;
+}
+
+void double_data(int *i_ptr);
+
+// ! It's better to pass by reference than by pointer
+void double_data(int *i_ptr) {
+  *i_ptr *= 2;
+}
+
+// NOTE Best practice is to use references instead of pointers for fns
+void double_data_ref(int &i_ref) {
+  i_ref *= 2;
+}
+
+void pass_by_ref() {
+  int value{ 10 };
+  int *i_ptr{};
+
+  cout << "value: " << value << endl;
+  // NOTE simply passing the reference is equivalent to passing the pointer
+  double_data(&value);
+  // NOTE Passing by reference is implicitly dereferenced
+  double_data_ref(value);
+  cout << "value after double_data & double_data_ref: " << value << endl;
+
+  i_ptr = &value;
+
+  double_data(i_ptr);
+  // NOTE It's not possible to pass a pointer as a reference argument
+  // ? This leads to safer code as pointers can point to invalid memory
+  // double_data_ref(i_ptr);
+
+  cout << "value: " << value << endl;
+}
+
+int *largest(int *i_ptr1, int *i_ptr2);
+int *create_arr(size_t size, int init_val = 0);
+
+// ? Returning a pointer from a function
+// NOTE ! NEVER return a pointer to a local variable as
+// they'll be deallocated once the function stack frame is popped
+int *largest(int *i_ptr1, int *i_ptr2) {
+  return *i_ptr1 > *i_ptr2 ? i_ptr1 : i_ptr2;
+}
+
+int *create_arr(size_t size, int init_val) {
+  int *arr_ptr{};
+
+  // NOTE `new int[size]` allocates an array of ints on the heap
+  // ? If `size` is 10, this allocates 4 * 10 = 40 bytes
+  arr_ptr = new int[size];
+
+  for (size_t i = 0; i < size; i++) {
+    // ? Both *(arr_ptr + 1) and arr[i] are equivalent
+    //*(arr_ptr + i) = init_val;
+    arr_ptr[i] = init_val;
+  }
+
+  // ? It's valid to return a pointer to heap allocated memory
+  // ! It must be manually freed with `delete[]` or a memory leak will occur
+  return arr_ptr;
+}
+
+void ref_return() {
+  int x{ 10 };
+  int y{ 15 };
+
+  // ! This compiles but will cause a runtime error, it would not compile if
+  // the arguments were references
+  // int *will_crash{ largest(&x, nullptr) };
+
+  int *largest_ptr{ largest(&x, &y) }; // returns pointer to y
+
+  cout << "largest is: " << *largest_ptr << endl;
+
+  int arr_size = 10;
+  int *new_arr = create_arr(arr_size, 5);
+
+  for (size_t i = 0; i < arr_size; i++) {
+    cout << "*(new_arr + " << i << " ) is " << *(new_arr + i) << endl;
+  }
+
+  // ! The heap memory must be freed to not cause a memory leak
+  delete[] new_arr;
 }
