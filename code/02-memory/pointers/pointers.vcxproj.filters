@@ -15,40 +15,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="exercises.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="functions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="strings.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="basic_io.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="control_flow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="pointers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="functions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="strings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="basic_io.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="control_flow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pointers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
