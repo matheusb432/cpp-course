@@ -17,3 +17,5 @@ _Primitive types_ are the most basic types in C++. They are the building blocks 
 - Favor **signed numbers over unsigned numbers**, and avoid mixing signed with unsigned in operations, as unexpected and hard to debug bugs often happen.
 
 - Favor **double over float** unless space is at a premium, as the lack of precision in a float will often lead to inaccuracies.
+
+- `int8_t` and `u_int8_t` may be interpreted as characters in certain scenarios, to avoid unpredictable bugs, **they shouldn't be used**.
