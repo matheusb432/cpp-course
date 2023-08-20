@@ -1,5 +1,7 @@
 # C++ Memory Management 🎮
 
+- _Memory leaks_ are also called _orphaned memory_.
+
 ## Pointers
 
 _Pointers_ are variables that store the address of another variable.
@@ -53,6 +55,16 @@ ptr2 = &y; // valid
 const int *const ptr3{ &x }; // can't change the value or reference
 ```
 
+### Dangling Pointers
+
+_Dangling pointers_ are pointers that point to invalid memory, such as freed memory or memory that's out of scope.
+
+```cpp
+int* ptr{ new int{ 5 } };
+delete ptr;
+*ptr = 6; // undefined behavior
+```
+
 ## Dynamic Memory Allocation
 
 _Dynamic memory allocation_ is the process of allocating memory at runtime. It's an essential technique for creating data structures.
@@ -65,16 +77,44 @@ _Dynamic memory allocation_ is the process of allocating memory at runtime. It's
 int* ptr{ new int }; // ptr is now a pointer to an int on the heap
 ```
 
-## Views
+## References
 
-_Views_ are (often) readonly references to objects, they provide non-owning access to data.
+_References_ are aliases for variables. They're used to pass variables to functions without copying them.
 
-- Modifying an object invalidates all _views_ into that object.
+```cpp
+vector<string> stooges{ "Larry", "Moe", "Curly" };
 
-## Strings
+// `str` is a copy of the string on each iteration,
+// leading to inneficient code and not modifying the original vector
+for (auto str : stooges) {
+    str = "Funny"; 
+}
 
-- Prefer `std::string_view` over std::string when you need a read-only string, especially for function parameters.
+// `&str` is a reference to the string on each iteration
+for (auto &str : stooges) {
+    str = "Funny"; // modifies the original vector
+}
 
-- `std::string_view` provides a read-only "view" of a string, similar to an immutable borrow in Rust, while std::string would be the owned version of a string.
+// `const` makes it a read-only reference
+for (auto const &str : stooges) {
+    cout << str << endl;
+}
+```
 
-- string views are useful for getting substrings from a string without copying data, similar to Rust's &str
+- References are a safer way to pass pointers to functions, as they can't be `nullptr` and are still as efficient as pointers.
+- References can be thought of as _constant pointers_ that are automatically dereferenced.
+
+## L-Values & R-Values
+
+_L-values_ and _R-values_ are terms used to describe the addressability of values. They're named after their usage in the assignment operator (Left and Right side)
+
+- _L-values_ are values that have an address - e.g. variables or references.
+
+- _R-values_ are values that don't have an address - e.g. literals or temporary values.
+
+```cpp
+// x is an l-value & 5 is an r-value
+int x{ 5 };
+// y is an l-value & x + 5 is an r-value
+int y{ x + 5 };
+```

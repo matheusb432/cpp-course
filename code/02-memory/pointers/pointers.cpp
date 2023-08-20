@@ -11,12 +11,14 @@ void basics();
 void dynamic_mem();
 void pass_by_ref();
 void ref_return();
+void refs();
 
 int main() {
   // basics();
   // dynamic_mem();
   // pass_by_ref();
-  ref_return();
+  // ref_return();
+  refs();
 }
 
 void basics() {
@@ -205,4 +207,22 @@ void ref_return() {
 
   // ! The heap memory must be freed to not cause a memory leak
   delete[] new_arr;
+}
+
+void refs() {
+  int x{10};
+  int &ref{x};
+
+  x = 15;
+
+  cout << "x: " << x << endl;
+  cout << "ref: " << ref << endl;
+
+  // ? Changing the value of the reference will change the value of the variable and vice versa
+  ref = 20;
+
+  cout << "x: " << x << endl;
+  cout << "ref: " << ref << endl;
+
+
 }
