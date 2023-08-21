@@ -1,18 +1,21 @@
 BasedOnStyle: GNU
 AlignAfterOpenBracket: Align
+
+# ? Prevents single line blocks from being broken into multiple lines
 AllowAllParametersOfDeclarationOnNextLine: false
 AllowShortBlocksOnASingleLine: false
 AllowShortCaseLabelsOnASingleLine: false
+
 AllowShortFunctionsOnASingleLine: Empty
 
-# Uncommenting these lines will sometimes result in lines following an
-# if(){} or for(){} block being attached to the end of the block.
 AllowShortIfStatementsOnASingleLine: false
 AllowShortLoopsOnASingleLine: false
 
 AlwaysBreakAfterDefinitionReturnType: None
 AlwaysBreakAfterReturnType: None
 BreakBeforeBraces: Custom
+
+# ? Disables block indentation for statements like if, else, for, while, do
 BraceWrapping:
   AfterClass: false
   AfterControlStatement: false
@@ -28,18 +31,29 @@ BraceWrapping:
   SplitEmptyFunction: false
   SplitEmptyRecord: false
   SplitEmptyNamespace: false
+
 ContinuationIndentWidth: 2
 KeepEmptyLinesAtTheStartOfBlocks: false
 Language: Cpp
 MaxEmptyLinesToKeep: 1
 NamespaceIndentation: All
+
+# ? Max line length
 PenaltyExcessCharacter: 120
+
 PenaltyReturnTypeOnItsOwnLine: 1
 PointerAlignment: Right
 SortIncludes: false
 SpacesInContainerLiterals: false
 
+# ? Spaces around if/else/for/while/do but not fs
 SpaceBeforeParens: ControlStatements
+
 IndentCaseLabels: true
 Standard: Cpp11
+
+# ? No spaces in generic types (e.g. vector<int > => vector<int>)
 SpacesInAngles: false
+
+# ? Inserts braces after if/else/for/while/do
+InsertBraces: true
