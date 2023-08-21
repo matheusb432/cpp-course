@@ -4,6 +4,12 @@
 
 - The assignment operator returns the value it assigned to, so `x = 5` returns 5.
 
+- It's often best to not use the `inline` keyword for functions as modern compilers are great at determining which functions should have inline expansion
+
+- Avoid using `goto` statements as they can create code complexity.
+
+- Favor `while(true)` for intentional infinite loops, even if `for(;;)` is equivalent.
+
 ## The main() function
 
 The `main()` function is the entry point of every C++ program. Starting from _C++11_ onwards, it's possible to omit the `return 0;` statement at the end of the `main()` function.
@@ -126,6 +132,14 @@ auto y = 5.0; // y is a double
 - Initializing variables with `{}` sets them to their default value, so `int x {}` sets x to 0. It's often best practice to do so as reading uninitialized variables can cause UB.
 
 - Define your local variables as close to their first use as reasonable.
+
+- A variable’s storage duration (usually just called duration) determines what rules govern when and how a variable will be created and destroyed. In most cases, a variable’s duration directly determines its lifetime.
+
+> For this reason, local variables are sometimes called _automatic variables_
+
+- Variable shadowing should be avoided
+
+- Use `inline` variables for global constants
 
 ### Constants
 
