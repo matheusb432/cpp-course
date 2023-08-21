@@ -12,13 +12,18 @@ void dynamic_mem();
 void pass_by_ref();
 void ref_return();
 void refs();
+void print_arr(const int *arr, size_t size);
+int *apply_all(const int *arr1, size_t arr1_size, const int *arr2,
+               size_t arr2_size);
+void section_12_challenge();
 
 int main() {
   // basics();
   // dynamic_mem();
   // pass_by_ref();
   // ref_return();
-  refs();
+  // refs();
+  section_12_challenge();
 }
 
 void basics() {
@@ -210,19 +215,76 @@ void ref_return() {
 }
 
 void refs() {
-  int x{10};
-  int &ref{x};
+  int x{ 10 };
+  int &ref{ x };
 
   x = 15;
 
   cout << "x: " << x << endl;
   cout << "ref: " << ref << endl;
 
-  // ? Changing the value of the reference will change the value of the variable and vice versa
+  // ? Changing the value of the reference will change the value of the
+  // variable and vice versa
   ref = 20;
 
   cout << "x: " << x << endl;
   cout << "ref: " << ref << endl;
+}
 
+void print_arr(const int *arr, size_t size) {
+  for (int i = 0; i < size; i++) {
+    cout << arr[i] << ((i == size - 1) ? "" : ", ");
+  }
+  cout << endl;
+}
 
+// ? Original solution, can also be done with single ptr and a `position` int
+// ? Creates a new array from the product of arr1 & arr2 with size (arr1 * arr2)
+int *apply_all(const int *arr1, size_t arr1_size, const int *arr2,
+               size_t arr2_size) {
+  // ? Product array pointer, allocates (arr1_size * arr2_size * INT_SIZE)
+  // bytes on the heap
+  int *product_arr = new int[arr1_size * arr2_size];
+  // ? Copy of first index pointer
+  int *first_idx = product_arr;
+
+  for (int i = 0; i < arr2_size; i++) {
+    int curr2 = arr2[i];
+
+    for (int j = 0; j < arr1_size; j++) {
+      *(product_arr + j) = curr2 * arr1[j];
+    }
+
+    // ? Incrementing the pointer by size of 2, so if arr1 has size 3, this
+    // would increment the address pointer by 12 bytes
+    product_arr += arr1_size;
+  }
+
+  // ? Returning the index of the first array element.
+  return first_idx;
+}
+
+void section_12_challenge() {
+  // for (int i = 0; i < 1'000'000'000; i++) {
+  const int size1{ 7 };
+  const int size2{ 4 };
+  int array1[size1]{ 1, 5, 3, 4, 15, 6, 27 };
+  int array2[size2]{ 10, 21, 30, 150 };
+
+  cout << "Array1: ";
+  print_arr(array1, size1);
+
+  cout << "Array2: ";
+  print_arr(array2, size2);
+
+  int *arr3 = apply_all(array1, size1, array2, size2);
+  int size3 = size1 * size2;
+
+  cout << "Array3: ";
+  print_arr(arr3, size3);
+
+  // ? Freeing the heap memory - a memory leak can be observed in Diagnostic
+  // Tools in VS 2022 if this is commented out and this is run in a loop
+  delete[] arr3;
+  //}
 }
