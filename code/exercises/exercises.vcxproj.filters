@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\oop">
+      <UniqueIdentifier>{b0008544-79bd-45c1-bc77-9feaaf179524}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="exercises.cpp">
@@ -33,6 +36,9 @@
     <ClCompile Include="pointers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="oop.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="functions.h">
@@ -49,6 +55,12 @@
     </ClInclude>
     <ClInclude Include="pointers.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="oop.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Dog.h">
+      <Filter>Header Files\oop</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
