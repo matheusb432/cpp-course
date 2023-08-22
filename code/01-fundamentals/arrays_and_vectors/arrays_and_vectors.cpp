@@ -1,9 +1,7 @@
-#include "cli_app.h";
-
+#include "cli_app.h"
+#include <cctype>
 #include <iostream>
 #include <vector>
-#include <cctype>
-#include "arrays_and_vectors.h"
 
 using namespace std;
 
@@ -30,7 +28,7 @@ vector<int> use_vector() {
   return vec;
 }
 
-void display_vec(vector<int> vec, string name) {
+void display_vec(const vector<int>& vec, string name) {
   cout << name << ": " << vec.at(0) << ", " << vec.at(1)
        << " | size: " << vec.size() << endl;
 }
@@ -76,20 +74,21 @@ int count_divisible() {
 }
 
 // ? Counts elements before `-99`
-int count_numbers(const vector<int> &vec) {
+int count_numbers(const vector<int>& vec) {
   int count{};
   auto vec_len = vec.size();
 
   while (count < vec_len) {
-    if (vec.at(count) == -99)
+    if (vec.at(count) == -99) {
       break;
+    }
     count++;
   }
 
   return count;
 }
 
-int calculate_pairs(vector<int> vec) {
+int calculate_pairs(const vector<int>& vec) {
   int result{};
   auto vec_len = vec.size();
 
@@ -100,6 +99,7 @@ int calculate_pairs(vector<int> vec) {
   }
   return result;
 }
+
 using cli_app::MenuOption;
 
 // ? Also is section 11 challenge

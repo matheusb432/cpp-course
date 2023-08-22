@@ -29,25 +29,27 @@ namespace cli_app {
     cout << "Enter your choice: ";
   }
 
-  void print_numbers(const vector<double> &numbers) {
+  void print_numbers(const vector<double>& numbers) {
     if (numbers.empty()) {
       cout << "[] - The list is empty" << endl;
       return;
     }
 
     cout << "[ ";
-    for (auto num : numbers)
+    for (auto num : numbers) {
       cout << num << ", ";
+    }
     cout << "]" << endl;
   }
 
-  int find_indexof(const vector<double> &numbers) {
+  int find_indexof(const vector<double>& numbers) {
     cout << "Enter the number to find: ";
     auto n_to_find{ get_input() };
 
     for (int i = 0; i < numbers.size(); i++) {
-      if (n_to_find != numbers[i])
+      if (n_to_find != numbers[i]) {
         continue;
+      }
 
       cout << "Found it! " << n_to_find << " exists in numbers @ index " << i
            << endl;
@@ -60,29 +62,30 @@ namespace cli_app {
     return NO_INDEX;
   }
 
-  void add_number(vector<double> &numbers) {
+  void add_number(vector<double>& numbers) {
     cout << "Enter the number to add: ";
 
     auto new_number{ get_input() };
     cout << "Added " << new_number << " to the list.";
     numbers.push_back(new_number);
   }
-  void display_mean(const vector<double> &numbers) {
+  void display_mean(const vector<double>& numbers) {
     if (numbers.empty()) {
       cout << "Unable to calculate mean - no data" << endl;
       return;
     }
 
     double sum{};
-    for (auto num : numbers)
+    for (auto num : numbers) {
       sum += num;
+    }
 
     auto mean = sum / numbers.size();
     std::cout << "Mean is " << mean << endl;
     std::cout << "int Mean is " << static_cast<int>(mean) << endl;
   }
 
-  void display_smallest(const vector<double> &numbers) {
+  void display_smallest(const vector<double>& numbers) {
     if (numbers.empty()) {
       cout << "Unable to get smallest - no data" << endl;
       return;
@@ -90,14 +93,15 @@ namespace cli_app {
 
     double smallest{ numbers.at(0) };
     for (auto num : numbers) {
-      if (num > smallest)
+      if (num > smallest) {
         continue;
+      }
       smallest = num;
     }
     std::cout << "Smallest is " << smallest << endl;
   }
 
-  void display_largest(const vector<double> &numbers) {
+  void display_largest(const vector<double>& numbers) {
     if (numbers.empty()) {
       cout << "Unable to get largest - no data" << endl;
       return;
@@ -105,8 +109,9 @@ namespace cli_app {
 
     double largest{ numbers.at(0) };
     for (auto num : numbers) {
-      if (num < largest)
+      if (num < largest) {
         continue;
+      }
       largest = num;
     }
     std::cout << "Largest is " << largest << endl;

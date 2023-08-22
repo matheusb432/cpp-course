@@ -131,7 +131,6 @@
     <ClCompile Include="cli_app.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="arrays_and_vectors.h" />
     <ClInclude Include="cli_app.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

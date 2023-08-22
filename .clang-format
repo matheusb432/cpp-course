@@ -42,9 +42,12 @@ NamespaceIndentation: All
 PenaltyExcessCharacter: 120
 
 PenaltyReturnTypeOnItsOwnLine: 1
-PointerAlignment: Right
-SortIncludes: false
+PointerAlignment: Left
 SpacesInContainerLiterals: false
+
+# ? Include blocks formatting
+SortIncludes: true
+IncludeBlocks: Merge
 
 # ? Spaces around if/else/for/while/do but not fs
 SpaceBeforeParens: ControlStatements
