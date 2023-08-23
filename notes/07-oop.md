@@ -2,6 +2,41 @@
 
 ## Classes
 
+- In C++, it's common to separate the declaration of a class from its implementation, creating a pattern similar to interfaces.
+
+```cpp
+// MyClass.h
+class MyClass {
+public:
+    void my_method();
+};
+
+// MyClass.cpp
+#include "MyClass.h"
+
+void MyClass::my_method() {
+    // ...
+}
+```
+
+### Destructors
+
+_Destructors_ are special member methods that are called when an object is destroyed.
+
+- They're invoked automatically when an object goes out of scope, or when `delete` is called on a pointer to an object.
+
+- Destructors are useful for releasing resources that were allocated by the object to prevent memory leaks.
+
+```cpp
+class Player {
+public:
+    // ? Constructor
+    Player();
+    // ? Destructor
+    ~Player();
+};
+```
+
 ### Class Friends
 
 _Class Friends_ are functions or classes that are allowed to access private members of a class.

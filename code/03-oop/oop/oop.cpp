@@ -1,37 +1,23 @@
+#include "Account.h"
+#include "Player.h"
 #include <iostream>
-#include <vector>
 #include <string>
+#include <vector>
 
 using namespace std;
 
-class Player {
-public:
-  // ? class attributes (props)
-  string name;
-  int health;
-  int xp;
-
-  // ? class methods
-  void talk(string text) {
-    cout << name << "says: " << text << endl;
-  }
-  bool is_dead();
-};
-
-class Account {
-public:
-  // NOTE Setting default values for class attributes
-  string name{ "Account" };
-  double balance{ 4.2 };
-
-  bool deposit(double);
-  bool withdraw(double);
-};
+void classes_and_objs();
+void ctors_and_dtors();
 
 int main() {
+  // classes_and_objs();
+  ctors_and_dtors();
+}
+
+void classes_and_objs() {
   // NOTE By default, uninitialized classes have garbage data for all props
   Player p1;
-  Player *p_p1{ &p1 };
+  Player* p_p1{ &p1 };
 
   // ? Accessing object member with the dot operator
   p1.health = 100;
@@ -54,14 +40,14 @@ int main() {
   // ? Pointer arithmetic to offset the memory address by (sizeof(Player) * 1)
   cout << (players + 1) << endl;
 
-  Player *enemy{};
+  Player* enemy{};
   // ? Creating an object on the heap
   // ? The object inits with default values, in this case 0 for ints and "" for
   // string
   enemy = new Player();
 
   // ? Will initialize with the default attribute values
-  Account *acc{ new Account() };
+  Account* acc{ new Account() };
   acc->name = "My account";
   acc->balance = 1000;
 
@@ -69,4 +55,30 @@ int main() {
   // ? Equivalent
   (*acc).balance += 10;
   cout << "Account: " << acc->name << " (" << acc->balance << ")" << endl;
+
+  // ? Calling the methods implemented in Account.cpp
+  acc->withdraw(300);
+  acc->deposit(100);
+  cout << "Account: " << acc->name << " (" << acc->balance << ")" << endl;
+}
+
+void ctors_and_dtors() {
+  {
+    // ? These will be freed from memory when the scope ends
+    // ? Order will be `p3,p2,p1` since the stack is LIFO
+    Player p1{ "p1" };
+    Player p2{ "p2" };
+    Player p3{ "p3" };
+  }
+
+  // ? Valid syntax since the default ctor is defined
+  Player* enemy = new Player;
+  enemy->set_name("Enemy");
+
+  Player* level_boss = new Player("Level Boss", 1000, 300);
+  level_boss->set_name("Level Boss");
+
+  // ? Deleting the objects to call the destructor
+  delete enemy;
+  delete level_boss;
 }

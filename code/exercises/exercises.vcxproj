@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="basic_io.cpp" />
     <ClCompile Include="control_flow.cpp" />
+    <ClCompile Include="Dog.cpp" />
     <ClCompile Include="exercises.cpp" />
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="oop.cpp" />
