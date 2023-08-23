@@ -81,6 +81,8 @@ int* ptr{ new int }; // ptr is now a pointer to an int on the heap
 
 _References_ are aliases for variables. They're used to pass variables to functions without copying them.
 
+- **references are not objects in C++**. A reference is not required to exist or occupy storage. If possible, the compiler will optimize references away by replacing all occurrences of a reference with the referent.
+
 ```cpp
 vector<string> stooges{ "Larry", "Moe", "Curly" };
 
@@ -118,3 +120,30 @@ int x{ 5 };
 // y is an l-value & x + 5 is an r-value
 int y{ x + 5 };
 ```
+
+## Pass by Copy vs Pass by Reference
+
+At a low level, **everything is passed by value** (copy) - passed references either alias the object, or are pointers, and pointers are just the value of an address in memory (e.g. 0x1000), so copying the address values, (4/8 bytes on 32/64-bit systems, respectively), is always more expensive than creating a new value of a cheap type, such as a char that's 1 byte, int that's 2 or 4 bytes and so on. Not to mention the indirection overhead, too, so at copying types that are slightly bigger than pointers is still more efficient overall.
+
+- As a good rule of thumb: **An object is cheap to copy if it uses 2 or fewer “words” of memory** (where a “word” is approximated by the size of a memory address) and it has no setup costs.
+
+> if `sizeof(T) <= 2 * sizeof(void*)`, then T is 2 or fewer words of memory.
+
+- **Prefer pass by value for objects that are cheap to copy, and pass by const reference for objects that are expensive to copy**. If you’re not sure whether an object is cheap or expensive to copy, favor pass by const reference.
+
+- This is also why `string_view` is preferred over `const string&`, it's inexpensive to copy string_view as it has around 2 words of memory, and accessing it directly is faster than the double indirection with the reference to a string.
+
+## Return by reference
+
+- Static variables can be returned by a const reference, basically creating singletons, like so:
+
+```cpp
+const string& getProgramName()
+{
+    static const std::string s_programName { "Calculator" }; // has static duration, destroyed at end of program
+
+    return programName;
+}
+```
+
+- Avoid returning references to non-const local static variables.
