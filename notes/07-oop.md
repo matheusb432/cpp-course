@@ -19,6 +19,22 @@ void MyClass::my_method() {
 }
 ```
 
+### Constructors
+
+- _Constructor initialization lists_ are used to initialize member variables before the body of the constructor is executed. This can lead to more efficient code as the default constructors for the member variables are not called.
+
+```cpp
+// ? `foo` is initialized before the body of the constructor is executed
+MyClass::MyClass(int foo, int bar) : foo { foo } { /* ... */ }
+```
+
+- _Delegating constructors_ are constructors that call another constructor of the same class.
+
+```cpp
+// ? Invokes the constructor that takes two arguments
+MyClass::MyClass() : MyClass{ 0, 0 } { /* ... */ }
+```
+
 ### Destructors
 
 _Destructors_ are special member methods that are called when an object is destroyed.

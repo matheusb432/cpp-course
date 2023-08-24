@@ -78,7 +78,10 @@ void ctors_and_dtors() {
   Player* level_boss = new Player("Level Boss", 1000, 300);
   level_boss->set_name("Level Boss");
 
+  Player* another_enemy = new Player{ "Some Enemy", 300 };
+
   // ? Deleting the objects to call the destructor
   delete enemy;
+  delete another_enemy;
   delete level_boss;
 }
