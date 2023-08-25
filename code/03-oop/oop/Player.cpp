@@ -38,6 +38,11 @@ Player::Player(string name_val, int health_val, int xp_val)
   cout << "ctor with args" << endl;
 }
 
+Player::Player(const Player& source)
+    : name{ source.name }, health{ source.health }, xp{ source.xp } {
+  cout << "COPY_CTOR: made copy of " << source.name << endl;
+}
+
 // NOTE Delegate constructor, calls the above ctor with the specified args
 Player::Player(string name, int health) : Player{ name, health, 0 } {}
 

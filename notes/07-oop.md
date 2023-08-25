@@ -35,6 +35,26 @@ MyClass::MyClass(int foo, int bar) : foo { foo } { /* ... */ }
 MyClass::MyClass() : MyClass{ 0, 0 } { /* ... */ }
 ```
 
+- _Copy constructors_ are constructors that take a reference to an object of the same class as an argument. They take a _constant reference_ to prevent the object from being modified and then create a copy of the object.
+- Objects are _shallow copied_, so raw pointers will point to the same memory address, but member objects will be copied.
+
+```cpp
+// ? fn that needs a **copy** of an object
+void display(MyClass my_object) { /* ... */ }
+
+// ? fn that returns a **copy** of an object
+MyClass create() {
+    MyClass my_object;
+    return my_object;
+}
+
+// ? Copy constructor declaration
+MyClass(const MyClass& source);
+
+// ? Copy constructor definition
+MyClass::MyClass(const MyClass& source) : { name { source.name }, age { source.age }}  { /* ... */ }
+```
+
 ### Destructors
 
 _Destructors_ are special member methods that are called when an object is destroyed.

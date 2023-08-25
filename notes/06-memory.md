@@ -147,3 +147,20 @@ const string& getProgramName()
 ```
 
 - Avoid returning references to non-const local static variables.
+
+## Shallow vs Deep Copy
+
+In C++, objects are _shallow copied_ by default, meaning that pointers will point to the same memory address, but member objects will be copied.
+
+- _Shallow copy_, or _memberwise copy_, is the process of copying the members of an object to another object. It's the default behavior of the copy constructor and assignment operator.
+- C++'s shallow copying behavior is slightly different from some higher-level languages, where objects are not copied in shallow copies, but rather referenced.
+
+- _Deep copying_ is the process of copying the members and the data of objects that pointers point to. It's not recommended to use raw pointers as member variables, as it can lead to increase complexity and memory leaks.
+
+```cpp
+class Shallow {
+private:
+    int* data;
+
+};
+    ```

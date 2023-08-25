@@ -62,6 +62,12 @@ void classes_and_objs() {
   cout << "Account: " << acc->name << " (" << acc->balance << ")" << endl;
 }
 
+// ? Will create a copy of the object and call it's copy constructor
+void display_player(Player player_copy) {
+  cout << "Player: " << player_copy.name << ", health = " << player_copy.health
+       << ", xp = " << player_copy.xp << endl;
+}
+
 void ctors_and_dtors() {
   {
     // ? These will be freed from memory when the scope ends
@@ -69,6 +75,8 @@ void ctors_and_dtors() {
     Player p1{ "p1" };
     Player p2{ "p2" };
     Player p3{ "p3" };
+
+    display_player(p3);
   }
 
   // ? Valid syntax since the default ctor is defined
@@ -79,6 +87,8 @@ void ctors_and_dtors() {
   level_boss->set_name("Level Boss");
 
   Player* another_enemy = new Player{ "Some Enemy", 300 };
+
+  display_player(*another_enemy);
 
   // ? Deleting the objects to call the destructor
   delete enemy;
