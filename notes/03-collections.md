@@ -26,6 +26,7 @@ _Vectors_ are used to store an indexed collection of elements of the same type. 
   - **Vector resizing is an expensive operation**, because it requires allocating a new block of memory and copying the elements from the old block to the new one.
 
 - Vectors are an OOP abstraction (a _template class_) over arrays. They have a lot of useful methods and are generally easier to work with than arrays.
+- Vectors automatically deallocate memory using their destructors, implementing the RAII pattern so that it frees the memory when the object goes out of scope.
 
 - Vectors have built-in _bounds checking_ via the `at()` method. **Accessing an element outside of the bounds of a vector results in an exception**.
   - Accessing elements using the `[]` operator doesn't perform bounds checking.

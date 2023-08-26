@@ -15,6 +15,9 @@ int* ptr{ &x }; // ptr is now the address of x
 - The `*` operator is used to _dereference_ a pointer, it gets the value of the variable it points to.1
 - The `nullptr` is the null pointer literal, it's of address 0.
 
+- Avoid using void pointers (`void*`) as they effectively allow you to avoid type checking.
+- Avoid using pointers to pointers as they're complex and dangerous.
+
 ### Pointer Arithmetic
 
 _Pointer arithmetic_ is the process of adding or subtracting an integer to a pointer.
@@ -71,11 +74,27 @@ _Dynamic memory allocation_ is the process of allocating memory at runtime. It's
 
 - To handle vectors, C++ allocates pointers on the stack of a fixed size, that point to dynamic data on the _heap_, this guarantees that the vector's pointer and metadata will always be of the same size, even if it's resized.
 
-- The `new` operator is used to allocate memory on the heap, it returns a pointer to the allocated memory.
+## `new` operator
+
+The `new` operator is used to allocate memory on the heap, it returns a pointer to the allocated memory.
 
 ```cpp
 int* ptr{ new int }; // ptr is now a pointer to an int on the heap
 ```
+
+- **Operator new can fail** - When requesting memory from the operating system, in rare circumstances, the operating system may not have any memory to grant the request with. When this happens C++ throws an exception, or, if specified, returns a `nullptr`.
+
+## `delete` operator
+
+The `delete` operator does not actually delete anything. It simply **returns the memory being pointed to back to the operating system**.
+
+```cpp
+int* ptr{ new int{ 5 } };
+delete ptr; // ptr is now a dangling pointer
+```
+
+- After freeing a pointer, a best practice it to immediately set it to `nullptr` afterwards.
+- Deleting a null pointer (`nullptr`) is ok, and does nothing. However, if a pointer is freed and not set to `nullptr`, deleting it causes UB.
 
 ## References
 
@@ -163,4 +182,12 @@ private:
     int* data;
 
 };
-    ```
+```
+
+## Move Semantics
+
+_Move semantics_ is the process of moving resources from one object to another. It's used to avoid expensive copies and to transfer ownership of resources.
+
+- Copy constructors deep copying can have a significant performance impact when copying large objects, so _Move constructors_ are used to move an object's resources into another.
+- C++ compilers may optimize copying away by using _copy elision_, this can be extremely efficient.
+- _r-value references_ are used in move semantics, they're references that can only bind to r-values.

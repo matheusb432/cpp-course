@@ -67,3 +67,29 @@ _Scoped enums_ are enums that are scoped to a class or namespace.
 enum class State { EngineFailure, InclementWeather, Nominal };
 enum class Action : int { Idle, Accelerate, Decelerate };
 ```
+
+## Structs
+
+_Structs_ are a compound data type that groups together variables of different types.
+
+- It's best to provide a default value for all members. This ensures that your members will be initialized even if the variable definition doesn’t include an initializer list.
+
+- The size of a struct is not always the sum of the size of all its members, this is due to _padding_ as it reinforces memory alignment in contiguous memory word-sized blocks (32 bits or 64 bits depending on CPU).
+
+```cpp
+// Foo1 can have size 12
+struct Foo1
+{
+    short a{}; // will have 2 bytes of padding after a
+    int b{};
+    short c{}; // will have 2 bytes of padding after c
+};
+
+// Foo2 can have size 8
+struct Foo2
+{
+    int b{};
+    short a{};
+    short c{};
+};
+```

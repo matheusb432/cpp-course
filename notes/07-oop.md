@@ -55,6 +55,22 @@ MyClass(const MyClass& source);
 MyClass::MyClass(const MyClass& source) : { name { source.name }, age { source.age }}  { /* ... */ }
 ```
 
+- _Move constructors_ are constructors that move the resource of an object into another object. They take an _r-value reference_ to an object of the same class as an argument. They're used to avoid expensive copies and to transfer ownership of resources.
+
+```cpp
+// ? fn that needs a **copy** of an object
+void display(MyClass my_object) { /* ... */ }
+
+// ? fn that returns a **copy** of an object
+MyClass create() {
+    MyClass my_object;
+    return my_object;
+}
+
+// ? Move constructor declaration
+MyClass(MyClass&& source);
+```
+
 ### Destructors
 
 _Destructors_ are special member methods that are called when an object is destroyed.
