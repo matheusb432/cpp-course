@@ -1,5 +1,21 @@
 # Object-Oriented Programming in C++ 🎮
 
+## Structs
+
+_Structs_ are a way to group related data together. They're similar to classes, but they have a few key differences:
+
+- Structs are public by default, whereas classes are private by default.
+- Structs don't have access modifiers (public, private, protected).
+
+```cpp
+struct Vector3 {
+    float x, y, z;
+};
+```
+
+- Use structs for passive objects with public access, and classes for active objects with private access.
+- Avoid declaring methods for structs, as they're not meant to be used for active objects.
+
 ## Classes
 
 - In C++, it's common to separate the declaration of a class from its implementation, creating a pattern similar to interfaces.
@@ -112,6 +128,21 @@ public:
 _Class Friends_ are functions or classes that are allowed to access private members of a class.
 
 - Class friends are declared using the `friend` keyword.
+- Class friends **should be used judiciously** as they can break encapsulation and can make code harder to maintain, some engineers even consider them an anti-pattern.
+
+```cpp
+class Player {
+private:
+    // ? `OtherClass` will have access to private members of `Player`
+    friend class OtherClass;
+
+    int health;
+    int xp;
+public:
+    // ...
+};
+
+
 
 ### Accessing Members
 
