@@ -35,6 +35,48 @@ void MyClass::my_method() {
 }
 ```
 
+- Derived classes constructors are executed in the order of inheritance, from the base class to the derived class.
+- Derived classes destructors are executed in the reverse order of inheritance, from the derived class to the base class.
+
+- the `final` keyword can be used to prevent a class from being inherited from, or a method from being overriden, it can also improve compiler optimization.
+
+```cpp
+class MyClass final {
+    // ...
+};
+```
+
+### Abstract Classes
+
+_Abstract classes_ are classes that cannot be instantiated, they're used to provide a common interface for a family of classes.
+
+- Abstract classes are declared by having at least one _pure virtual method_, which are methods that have no implementation.
+- The equivalent of an _interface_ in C++ is a class with only pure virtual methods.
+
+```cpp
+// Abstract class, no keyword needed
+class Shape {
+public:
+    // ? Pure virtual method
+    virtual void draw() = 0;
+    virtual void rotate() = 0;
+    // NOTE Virtual destructor is needed for polymorphic classes
+    virtual ~Shape() {}
+};
+
+// Concrete class that derives from `Shape`
+class Square : public Shape {
+public:
+    void draw() override {
+        // ...
+    }
+
+    void rotate() override {
+        // ...
+    }
+};
+```
+
 ### `this` pointer
 
 The `this` pointer is a pointer that points to the current object. It contains the address of the object that the method was called on and can only be used in class scope.
