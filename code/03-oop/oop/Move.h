@@ -16,6 +16,6 @@ public:
     Move(int d);
     Move(const Move& source);
     // NOTE Move constructor
-    Move(Move&& source);
+    Move(Move&& source) noexcept;
     ~Move();
 };

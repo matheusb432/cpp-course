@@ -19,6 +19,24 @@ void MyClass::my_method() {
 }
 ```
 
+### `this` pointer
+
+The `this` pointer is a pointer that points to the current object. It contains the address of the object that the method was called on and can only be used in class scope.
+
+- Can be dereferenced (`*this`) to yield the current object.
+
+```cpp
+void Account::set_balance(double bal) {
+    balance = bal; // `this->balance = bal;` is implied
+}
+
+int Account::compare_balance(const Account& other) {
+    if (this == &other) {
+        std::cout << "Same objects" << std::endl;
+    } 
+}
+```
+
 ### Constructors
 
 - _Constructor initialization lists_ are used to initialize member variables before the body of the constructor is executed. This can lead to more efficient code as the default constructors for the member variables are not called.
