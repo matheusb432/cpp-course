@@ -23,7 +23,8 @@ To solve these issues, _smart pointers_ were introduced in C++11.
 
 ## `unique_ptr<T>`
 
-- `unique_ptr<T>` is a simple, efficient smart pointer that owns and manages the memory it points to.
+`unique_ptr<T>` is a simple, efficient smart pointer that owns and manages the memory it points to.
+
 - It points to an object of type `T` on the heap, and it ca nbe the only owner of that object, as such, this pointer cannot be assigned or copied, but it **can** be moved.
 - When the pointer is destroyed, the object is freed.
 
@@ -42,7 +43,15 @@ p1->withdraw(500);
 
 ## `shared_ptr<T>`
 
-- `shared_ptr<T>` is a smart pointer that provides shared ownership of heap objects.
+`shared_ptr<T>` is a smart pointer that provides shared ownership of heap objects.
+
 - It points to an object of type `T` on the heap, and it can be one of many owners of that object, as such, this pointer can be assigned, copied, and moved.
 - It's handled via a _reference counting_ model, similar to `Rc<T>` in Rust.
 - When the reference count of the object reaches 0, the object is freed.
+
+## `weak_ptr<T>`
+
+`weak_ptr<T>` is a smart pointer that provides non-owning "weak" references to heap objects.
+
+- It's always created from a `shared_ptr<T>`, and it can be used to prevent strong reference cycles which could prevent the object from being freed. (Similar to `Rc<T>` and `Weak<T>` in Rust)
+- the pointer being _weak_ means that it **doesn't contribute to the reference count of the object**, so it doesn't prevent the object from being freed.

@@ -7,10 +7,12 @@ using namespace std;
 
 void unique_ptrs();
 void shared_ptrs();
+void weak_ptrs();
 
 int main() {
     // unique_ptrs();
-    shared_ptrs();
+    // shared_ptrs();
+    weak_ptrs();
 }
 
 void unique_ptrs() {
@@ -74,4 +76,51 @@ void shared_ptrs() {
     cout << "shared_ptr count = " << p1.use_count() << endl;
     // ? p1 is now a `nullptr` (address 0)
     cout << "p1 = " << p1 << endl;
+}
+
+class B;
+
+
+class A {
+    shared_ptr<B> b_ptr;
+
+public:
+    void set_b(shared_ptr<B>& b) {
+        b_ptr = b;
+    }
+
+    A() {
+        cout << "A constructor" << endl;
+    }
+
+    ~A() {
+        cout << "A destructor" << endl;
+    }
+};
+
+class B {
+    // NOTE Using a weak_ptr prevents a circular reference memory leak
+    weak_ptr<A> a_ptr;
+
+public:
+    void set_a(shared_ptr<A>& a) {
+        a_ptr = a;
+    }
+
+    B() {
+        cout << "B constructor" << endl;
+    }
+
+    ~B() {
+        // ? Won't every be called if `a_ptr` is a `shared_ptr`
+        cout << "B destructor" << endl;
+    }
+};
+
+void weak_ptrs() {
+    auto a = make_shared<A>();
+    auto b = make_shared<B>();
+    a->set_b(b);
+    // ? `a` gets inferred as a `weak_ptr`
+    b->set_a(a);
 }
