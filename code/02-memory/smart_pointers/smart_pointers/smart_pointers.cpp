@@ -12,13 +12,17 @@ void weak_ptrs();
 int main() {
     // unique_ptrs();
     // shared_ptrs();
-    weak_ptrs();
+    // weak_ptrs();
 }
+
 
 void unique_ptrs() {
     vector<unique_ptr<int>> ptrs;
 
-    unique_ptr<int> ptr_a{new int{100}};
+    unique_ptr<int> ptr_a{
+        new int{100}
+    };
+
     // NOTE `make_unique` is a better way to create a unique_ptr
     auto ptr_b = make_unique<int>(200);
     auto ptr_c = make_unique<int>(250);
@@ -38,6 +42,7 @@ void unique_ptrs() {
     }
 
     unique_ptr<Account> acc_p1{new Account{100}};
+
     // NOTE The `make_unique` arguments are passed to the `Account` constructor
     auto acc_p2 = make_unique<Account>(250);
 
@@ -76,6 +81,14 @@ void shared_ptrs() {
     cout << "shared_ptr count = " << p1.use_count() << endl;
     // ? p1 is now a `nullptr` (address 0)
     cout << "p1 = " << p1 << endl;
+
+    shared_ptr<Account> ptr_with_custom_deleter{
+        // NOTE Custom deleters are useful for resources that aren't managed by the OS
+        new Account{10}, [](Account* raw_ptr) {
+            cout << "Custom deleter logic..." << endl;
+            delete raw_ptr;
+        }
+    };
 }
 
 class B;

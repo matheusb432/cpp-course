@@ -219,3 +219,11 @@ _C++ strings_ are objects that represent sequences of characters. They are provi
 - They are dynamic in size, so they're a pointer to data stored on the heap.
 
 - C++ strings are **mutable**, and they're always initialized to an empty string.
+
+## Exceptions
+
+_Exceptions_ are a mechanism for handling errors in C++. They are used to signal that an error has occurred in a program.
+
+- The work via _stack unwinding_, which is the process of removing all the function call stack frames until the exception is caught. This can be slow, so exceptions should only be used for exceptional situations, and should not be used for control flow or the default error handling mechanism.
+
+- The `noexcept` keyword can be used to specify that a function does not throw exceptions.
