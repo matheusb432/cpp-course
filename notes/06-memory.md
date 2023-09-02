@@ -140,6 +140,23 @@ int x{ 5 };
 int y{ x + 5 };
 ```
 
+### r-value references
+
+- r-value references (&&) extend the lifespan of the object they are initialized with to the lifespan of the r-value reference
+
+```cpp
+#include <iostream>
+
+int main()
+{
+    int&& rref{ 5 }; // a temporary with value 5 is created here
+    rref = 10;
+    std::cout << rref << '\n';
+
+    return 0;
+}
+```
+
 ## Pass by Copy vs Pass by Reference
 
 At a low level, **everything is passed by value** (copy) - passed references either alias the object, or are pointers, and pointers are just the value of an address in memory (e.g. 0x1000), so copying the address values, (4/8 bytes on 32/64-bit systems, respectively), is always more expensive than creating a new value of a cheap type, such as a char that's 1 byte, int that's 2 or 4 bytes and so on. Not to mention the indirection overhead, too, so at copying types that are slightly bigger than pointers is still more efficient overall.

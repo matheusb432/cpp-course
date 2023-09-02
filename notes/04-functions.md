@@ -67,3 +67,30 @@ inline int add(int x, int y) { return x + y; }
 _Recursive functions_ are functions that call themselves. Their behavior in C++ is much like in other languages.
 
 - Using recursion are often more expensive than using loops due to the overhead of allocating stack frames and the compiler not being able to optimize them easily. If performance is critical, their behavior can be replicated using loops.
+
+## Lambdas
+
+_Lambdas_ (or _closures_) are anonymous functions that capture their environment.
+
+- lambdas are preferred over normal functions when we need a trivial, one-off function to pass as an argument to some other function.
+
+- The captured variables of a lambda are **clones** of the outer scope variables, not the actual variables.
+- By default, variables are captured by `const` value, so they're immutable unless the `mutable` keyword is added after the closure's parameters.
+
+> the captured variables will still only be mutable for the closure's scope, the original variable will not be mutated.
+
+- To mutate a captured variable, it should be passed by reference `&`.
+
+- _Default captures_ can be used to auto generate a list of captures for the closure.
+
+```cpp
+int health{ 33 };
+int armor{ 100 };
+std::vector<CEnemy> enemies{};
+
+// Capture enemies by reference and everything else by value.
+[=, &enemies](){};
+
+// Capture armor by value and everything else by reference.
+[&, armor](){};
+```
