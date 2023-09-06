@@ -208,3 +208,6 @@ _Move semantics_ is the process of moving resources from one object to another. 
 - Copy constructors deep copying can have a significant performance impact when copying large objects, so _Move constructors_ are used to move an object's resources into another.
 - C++ compilers may optimize copying away by using _copy elision_, this can be extremely efficient.
 - _r-value references_ are used in move semantics, they're references that can only bind to r-values.
+
+- `std::move` can be used whenever we want to treat an l-value like an r-value for the purpose of invoking move semantics instead of copy semantics.
+- Only use `std::move()` on persistent objects whose value you want to move, and do not make any assumptions about the value of the object beyond that point.
