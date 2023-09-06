@@ -26,3 +26,7 @@ _Stream manipulators_ are used to format the output of streams.
 std::cout.width(10); // sets the width of the next output to 10
 std::cout << std::setw(10); // same as above, but as a stream manipulator
 ```
+
+## File IO
+
+- Always close output files with `close()` to write out any unwritten buffers.

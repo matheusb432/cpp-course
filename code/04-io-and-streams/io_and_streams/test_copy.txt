@@ -1,0 +1,8 @@
+==== COPY START ====
+
+﻿Frank 30 123.456
+Larry 30 234.567
+Moe 35 345.678
+Curly 40 456.789
+
+==== COPY END ====
