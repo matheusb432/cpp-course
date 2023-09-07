@@ -93,4 +93,7 @@ std::vector<CEnemy> enemies{};
 
 // Capture armor by value and everything else by reference.
 [&, armor](){};
+
+// Does not capture it's environment, also called `stateless lambdas`.
+[](){};
 ```
