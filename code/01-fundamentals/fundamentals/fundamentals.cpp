@@ -38,11 +38,25 @@ void section_8_challenge() {
   cout << "pennies:" << pennies << endl;
 }
 
+void examples();
+
 // TODO move each section into its own file
 int main() {
-  // Variables
-  /*
-  cout << "Global var: " << global_var << endl;
+     // examples();
+
+  section_8_challenge();
+}
+
+void variables_examples();
+void statements_and_operators_examples();
+
+void examples() {
+     variables_examples();
+     statements_and_operators_examples();
+}
+
+void variables_examples() {
+       cout << "Global var: " << global_var << endl;
 
   // ? Different ways to initialize variables
   int x = 5;
@@ -150,12 +164,10 @@ int main() {
 
   // ? Constants
   const double price_per_room{ 30.0 };
+}
 
-  // Variables
-
-  // Statements and Operators
-
-  int total{};
+void statements_and_operators_examples() {
+       int total{};
   int num1{}, num2{}, num3{};
   const int count{ 3 };
 
@@ -192,7 +204,4 @@ int main() {
   counter /= 5; // 9
 
   cout << counter << endl;
-  */
-  section_8_challenge();
-  // Statements and Operators
 }

@@ -65,8 +65,7 @@ int count_divisible() {
   int count{};
 
   for (auto num : vec) {
-    // NOTE Equivalent to `num % 3 == 0 || num % 5 == 0 ? 1 : 0` as bools in
-    // C++ are 0 or 1
+    // NOTE Equivalent to `num % 3 == 0 || num % 5 == 0 ? 1 : 0` as bools can decay to ints (0 or 1)
     count += num % 3 == 0 || num % 5 == 0;
   }
 
@@ -149,8 +148,17 @@ void section_9_challenge() {
   } while (normalized_input != MenuOption::QUIT);
 }
 
+void examples();
+
 int main() {
   /*
+  examples();
+  */
+
+  section_9_challenge();
+}
+
+void examples() {
   // NOTE array size is inferred as 5, so it's not necessary specify it
   char vowels[]{ 'a', 'e', 'i', 'o', 'u' };
   cout << "The first vowel is: " << vowels[0] << endl;
@@ -241,7 +249,4 @@ int main() {
   double avg{ sum / temps.size() };
   cout << "sum: " << sum << endl;
   cout << "avg: " << avg << endl;
-  */
-
-  section_9_challenge();
 }

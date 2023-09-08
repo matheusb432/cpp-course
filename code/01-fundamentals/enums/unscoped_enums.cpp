@@ -110,7 +110,7 @@ void test2() {
   }
 }
 
-//// NOTE Using an `Unknown` enum value to represent an invalid enum value
+// NOTE Using an `Unknown` enum value to represent an invalid enum value
 // enum State { EngineFailure, InclementWeather, Nominal, Unknown };
 // enum Sequence { Abort, Hold, Launch };
 
