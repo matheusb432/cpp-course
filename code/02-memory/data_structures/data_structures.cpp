@@ -102,4 +102,23 @@ int main() {
     std::cout << "Mapped vector with fifth of doubled values:" << std::endl;
     std::ranges::for_each(mapped_vec, print_val);
     std::cout << std::endl;
+
+    // ? Stateful lambda expressions
+    int x{100};
+    int y{200};
+    int z{300};
+
+    auto stateful_lambda = [=]() mutable {
+        x += 10;
+        y += 20;
+        // ? Will increment between calls as it's mutable
+        std::cout << "x: " << x << std::endl;
+        std::cout << "y: " << y << std::endl;
+    };
+    stateful_lambda();
+    stateful_lambda();
+
+    // NOTE As the stateful lambda did not capture by reference, the values of x and y are unchanged
+    std::cout << "x: " << x << std::endl;
+    std::cout << "y: " << y << std::endl;
 }
