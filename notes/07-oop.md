@@ -183,8 +183,7 @@ private:
 public:
     // ...
 };
-
-
+```
 
 ### Accessing Members
 

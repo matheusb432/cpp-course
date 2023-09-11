@@ -8,14 +8,7 @@ using std::cin;
 using std::cout;
 using std::string;
 using std::vector;
-//
-// void test1();
-// void test2();
-// void test3();
 
-// enum Direction { North, South, East, West };
-
-// string direction_to_string(Direction direction);
 
 string direction_to_string(Direction direction) {
   string result;
